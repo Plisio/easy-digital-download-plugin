@@ -4,7 +4,7 @@
  * Plugin Name:     Easy Digital Downloads Payment Gateway - Plisio
  * Plugin URI:      https://plisio.net
  * Description:     Accept cryptocurrencies via Plisio in your EDD store
- * Version:         1.0.0
+ * Version:         1.1.0
  * Author:          Plisio
  * Author URI:      plugins@plisio.net
  * License: MIT License
@@ -157,11 +157,10 @@ final class EDD_Plisio_Payments
             'success_url' => $success_url,
             'email' => $purchase_data['user_email'],
             'plugin' => 'EasyDigitalDownloads',
-            'version' => '1.0.0'
+            'version' => '1.1.0'
         ];
 
         $response = $client->createTransaction($params);
-		error_log(implode(',',$response));
 
         if ($response && $response['status'] !== 'error' && !empty($response['data'])) {
             wp_redirect($response['data']['invoice_url']);
@@ -203,8 +202,8 @@ final class EDD_Plisio_Payments
         }
 
         $api_key = edd_get_option('plisio_secret_key', '');
-        $order_id = $_POST['order_number'];
-        $order_status = $_POST['status'];
+        $order_id = absint($_POST['order_number']);
+        $order_status = sanitize_text_field($_POST['status']);
 
         if ($this->verifyCallbackData($_POST, $api_key)) {
 

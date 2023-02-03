@@ -5,7 +5,6 @@ class PlisioClientEdd
     protected $secretKey = '';
     public $apiEndPoint = 'https://plisio.net/api/v1';
 
-
     public function __construct($secretKey)
     {
         $this->secretKey = $secretKey;
@@ -38,42 +37,6 @@ class PlisioClientEdd
     {
         return $this->apiCall('invoices/new', $req);
     }
-
-
-    /**
-     * Creates a withdrawal from your account to a specified address.<br />
-     * @param amount The amount of the transaction (floating point to 8 decimals).
-     * @param currency The cryptocurrency to withdraw.
-     * @param address The address to send the coins to.
-     * @param auto_confirm If auto_confirm is TRUE, then the withdrawal will be performed without an email confirmation.
-     */
-    public function createWithdrawal($amount, $currency, $address)
-    {
-        $req = array(
-            'currency' => $currency,
-            'amount' => $amount,
-            'to' => $address,
-            'type' => 'cash_out',
-        );
-        return $this->apiCall('operations/withdraw', $req);
-    }
-
-    /**
-     * Creates a withdrawal from your account to a specified address.<br />
-     * @param payments array of addresses and amounts.
-     * @param currency The cryptocurrency to withdraw.
-     */
-    public function createMassWithdrawal($payments, $currency)
-    {
-        $req = array(
-            'currency' => $currency,
-            'amount' => implode(',', array_values($payments)),
-            'to' => implode(',', array_keys($payments)),
-            'type' => 'mass_cash_out',
-        );
-        return $this->apiCall('operations/withdraw', $req);
-    }
-
 
     private function isSetup()
     {
