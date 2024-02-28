@@ -4,7 +4,7 @@
  * Plugin Name:     Easy Digital Downloads Payment Gateway - Plisio
  * Plugin URI:      https://plisio.net
  * Description:     Accept cryptocurrencies via Plisio in your EDD store
- * Version:         1.1.0
+ * Version:         1.1.1
  * Author:          Plisio
  * Author URI:      plugins@plisio.net
  * License: MIT License
@@ -147,11 +147,16 @@ final class EDD_Plisio_Payments
 
         $client = new \PlisioClientEdd($api_key);
 
+        $currency = edd_get_currency();
+        if ($currency === 'RIAL') {
+            $currency = 'IRR';
+        }
+
         $params = [
             'order_name' => 'Order #' . $payment_id,
             'order_number' => $payment_id,
             'source_amount' => $purchase_data['price'],
-            'source_currency' => edd_get_currency(),
+            'source_currency' => $currency,
             'cancel_url' => edd_get_failed_transaction_uri(),
             'callback_url' => $ipn_url,
             'success_url' => $success_url,

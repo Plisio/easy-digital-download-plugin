@@ -3,8 +3,8 @@ Contributors: Plisio
 Donate link: https://plisio.net
 Tags: plisio, bitcoin, accept bitcoin, litecoin, ethereum, ripple, monero, bitcoin cash, bcash, altcoins, altcoin, accept altcoin, bitcoin processor, bitcoin gateway, payment gateway, payment module, bitcoin module, bitcoin edd, btc
 Requires at least: 4.0
-Tested up to: 6.0
-Stable tag: 1.1.0
+Tested up to: 6.4
+Stable tag: 1.1.1
 License: MIT
 License URI: https://github.com/Plisio/easy-digital-download-plugin/blob/main/LICENSE
 
@@ -45,6 +45,7 @@ To find out more about the benefits of Cryptocurrencies for your business, as we
 * IDR - Indonesian Rupiah
 * ILS - Israeli New Sheqel
 * INR - Indian Rupee
+* IRR - Iranian Rial
 * JPY - Japanese Yen
 * KRW - South Korean Won
 * MXN - Mexican Peso
